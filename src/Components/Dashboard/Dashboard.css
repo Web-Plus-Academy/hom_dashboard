@@ -1,29 +1,76 @@
-.dashboard-container {
-    background-color: #f4f4f4;
-    border: 2px solid blue;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  .add_user_heading{
+    font-size: 2rem;
     text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .add-user-form {
     max-width: 600px;
     margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .dashboard-welcome {
-    font-size: 1.5rem;
+  .add-user-form h3 {
+    text-align: center;
     color: #333;
+    margin-bottom: 20px;
+    font-size: 24px;
   }
   
-  .dashboard-name {
-    font-size: 3rem;
-    margin: 1rem 0;
-    color: #007bff;
+  .add-user-form div {
+    margin-bottom: 15px;
   }
   
-  .dashboard-id {
-    font-size: 1.2rem;
-    color: #666;
+  .add-user-form label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: 500;
   }
   
-  /* Additional styling can be added for other user details */
+  .add-user-form input[type="text"],
+  .add-user-form input[type="password"],
+  .add-user-form input[type="number"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 5px 0 10px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  .add-user-form input:focus {
+    border-color: #66afe9;
+    outline: none;
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6);
+  }
+  
+  .add-user-form button {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .add-user-form button:hover {
+    background-color: #218838;
+  }
+  
+  .add-user-form .message {
+    text-align: center;
+    color: #d9534f;
+    font-size: 16px;
+  }
   

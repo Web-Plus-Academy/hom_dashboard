@@ -1,52 +1,60 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from '../../axiosConfig.js';
 import './Dashboard.css';
-import { toast } from 'react-toastify';
+import Swal from 'sweetalert2';
+import 'sweetalert2/src/sweetalert2.scss';
 
-const Dashboard = ({ adminDetails }) => {
+const Dashboard = () => {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+  const [batchnumber, setBatchNumber] = useState('');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      var response = await axios.post('http://localhost:5000/api/admin/newUser', {
-        name,
-        username: username.toUpperCase(), // Assuming you want to convert username to uppercase
-        password,
-      }, {
-        withCredentials: true, // Ensure cookies are sent
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      console.log(response.data);
-      if (response.data.success) {
-        toast.success(response.data.message);
-        setName('');
-        setUsername('');
-        setPassword('');
-      } else {
-        console.log(response.data);
-        toast.error(response.data.message);
+    const userData = {
+      name,
+      username: username.toUpperCase(),
+      password,
+      batchnumber
+    };
+
+    const result = await Swal.fire({
+      title: 'Please confirm the details',
+      html: `<pre>${JSON.stringify(userData, null, 2)}</pre>`,
+      icon: 'info',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Confirm'
+    });
+
+    if (result.isConfirmed) {
+
+      try {
+        const response = await axios.post('/api/admin/newUser', userData);
+
+        if (response.data.success) {
+          Swal.fire('Success!', response.data.message, 'success');
+          setName('');
+          setUsername('');
+          setPassword('');
+          setBatchNumber('');
+        } else {
+          Swal.fire('Error!', response.data.message, 'error');
+        }
+      } catch (error) {
+        Swal.fire('Error!', error.message, 'error');
+        console.error('Error:', error.message);
       }
-    } catch (error) {
-      toast.error(response.data.message);
-      console.error('Error:', error.message);
     }
   };
 
-
   return (
     <>
-      <div className="dashboard-container">
-        <h4 className="dashboard-welcome">Welcome,</h4>
-        <h1 className="dashboard-name">{adminDetails.name}</h1>
-        <p className="dashboard-id">ID: {adminDetails.ID}</p>
-      </div>
-      <h3>Add New User</h3>
+      <h1>Dashboard</h1>
       <form onSubmit={handleSubmit} className="add-user-form">
+        <h3 className='add_user_heading'>Add New User</h3>
         <div>
           <label>Name:</label>
           <input
@@ -74,9 +82,19 @@ const Dashboard = ({ adminDetails }) => {
             required
           />
         </div>
+        <div>
+          <label>Batch Number:</label>
+          <input
+            type="number"
+            value={batchnumber}
+            onChange={(e) => setBatchNumber(e.target.value)}
+            min="1"
+            max="100"
+            required
+          />
+        </div>
         <button type="submit">Add User</button>
       </form>
-      {message && <p className="message">{message}</p>}
     </>
   );
 };

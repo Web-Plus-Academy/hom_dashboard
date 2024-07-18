@@ -63,11 +63,11 @@ const App = () => {
         <>
           <Navbar onLogout={handleLogout} />
           <div className="app-container">
-            <Sidebar />
+            <Sidebar adminDetails={adminDetails}  />
             <div className="main-content">
               <Routes>
                 <Route path="/" element={<Navigate to="/dashboard" />} />
-                <Route path="/dashboard" element={<Dashboard adminDetails={adminDetails} />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/tasks" element={<TaskSubmit />} />
                 <Route path="/pod" element={<POD />} />
               </Routes>

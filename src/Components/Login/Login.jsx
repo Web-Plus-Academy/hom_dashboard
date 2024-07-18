@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import axios from '../../axiosConfig';
 import './Login.css';
 import loginImg from '../../assets/login.jpg';
 
@@ -19,11 +19,12 @@ const Login = ({ setIsAuthenticated }) => {
     }
     
     try {
-      const response = await axios.post('http://localhost:5000/api/admin/logInAdmin',
-        adminData, 
-        {
-          withCredentials: true, // Ensure cookies are sent
-        });
+      const response = await axios.post('/api/admin/logInAdmin', adminData);
+      // const response = await axios.post('http://localhost:5000/api/admin/logInAdmin',
+      //   adminData, 
+      //   {
+      //     withCredentials: true, // Ensure cookies are sent
+      //   });
 
 
       if (response.data.success) {
