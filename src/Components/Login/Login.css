@@ -83,3 +83,59 @@
 .submit-button:hover {
   background-color: #0056b3;
 } 
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .login-container img {
+    width: 40%; /* Adjust width for tablets and smaller screens */
+  }
+
+  .login-container form {
+    margin-right: 20px; /* Reduce margin on smaller screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column; /* Stack items vertically on smaller screens */
+    align-items: center; /* Center items horizontally */
+    padding: 0;
+    margin: auto;
+  }
+
+  .login-container img {
+    margin: 0;
+    width: 60%;
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .login-container form {
+    max-width: 90%; /* Adjust width for smaller screens */
+    margin-right: 0; /* Remove margin-right */
+  }
+
+  .right_login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-container img {
+    height: auto; /* Maintain aspect ratio */
+  }
+
+  .login-container form {
+    padding: 1rem; /* Reduce padding on very small screens */
+  }
+
+  .form-input {
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+  }
+
+  .submit-button {
+    font-size: 0.9rem; /* Adjust button font size for smaller screens */
+  }
+}

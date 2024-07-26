@@ -73,3 +73,31 @@
     font-weight: bold;
     background-color: orange;
 }
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+
+    .app-container{
+        flex: 1;
+    }
+
+    .sidebar{
+        width: 40%;
+    }
+    .sidebar-box{
+        width: 90%;
+    }
+
+    .sidebar-box h4{
+        font-size: 20px;
+    }
+
+    .sidebar-container {
+        width: 100%; /* Full width on small screens */
+        position: static; /* Stack sidebar vertically on small screens */
+        height: auto;
+    }
+    .sidebar-container a{
+        font-size: 10px;
+    }
+}

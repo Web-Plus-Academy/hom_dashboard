@@ -1,0 +1,80 @@
+.pod-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 2rem auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .pod-title {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .pod-content {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .pod-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pod-button:hover {
+    background-color: #0056b3;
+  }
+  
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .pod-container {
+        padding: 1rem;
+        max-width: 90%; /* Increase max-width on smaller screens */
+        margin: 1rem auto;
+    }
+
+    .pod-title {
+        font-size: 1.5rem; /* Smaller title font-size for smaller screens */
+    }
+
+    .pod-content {
+        font-size: 0.9rem; /* Slightly smaller content font-size */
+    }
+
+    .pod-button {
+        padding: 0.5rem 1rem; /* Smaller padding for buttons on smaller screens */
+        font-size: 0.9rem; /* Smaller font-size for buttons */
+    }
+}
+
+@media (max-width: 480px) {
+    .pod-title {
+        font-size: 1.25rem; /* Further reduce font-size for very small screens */
+    }
+
+    .pod-content {
+        font-size: 0.8rem; /* Further reduce font-size for very small screens */
+    }
+
+    .pod-button {
+        padding: 0.5rem; /* Further reduce padding for buttons on very small screens */
+        font-size: 0.8rem; /* Further reduce font-size for buttons */
+    }
+}

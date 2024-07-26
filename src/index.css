@@ -12,7 +12,14 @@ hr{
 }
 
 .app-container {
+    height: 90%; 
     display: flex;
+}
+.navbar{
+    height: 10%;
+}
+.application{
+    height: 100vh;
 }
   
 .main-content {

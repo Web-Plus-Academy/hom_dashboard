@@ -37,7 +37,7 @@ const Login = ({ setIsAuthenticated }) => {
         localStorage.setItem('adminDetails', JSON.stringify(adminDetails));
         setIsAuthenticated(true);
         toast.success(response.data.message);
-        navigate('/dashboard');
+        navigate('/pod');
 
       } else {
         toast.error(response.data.message);

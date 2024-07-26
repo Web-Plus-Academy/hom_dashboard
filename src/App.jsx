@@ -60,20 +60,20 @@ const App = () => {
     <Router>
       <ToastContainer />
       {isAuthenticated ? (
-        <>
+        <div className='application'>
           <Navbar onLogout={handleLogout} />
           <div className="app-container">
             <Sidebar adminDetails={adminDetails}  />
             <div className="main-content">
               <Routes>
-                <Route path="/" element={<Navigate to="/dashboard" />} />
+                <Route path="/" element={<Navigate to="/pod" />} />
+                <Route path="/pod" element={<POD />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/tasks" element={<TaskSubmit />} />
-                <Route path="/pod" element={<POD />} />
               </Routes>
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <Routes>
           <Route path="/" element={<Login setIsAuthenticated={handleLogin} />} />
