@@ -35,9 +35,8 @@ const App = () => {
 
   const handleLogout = async () => {
     try{
-
       
-      const response = await axios.get('http://localhost:5000/api/admin/logOutAdmin' );
+      const response = await axios.get('/api/admin/logOutAdmin' );
       
       if(response.data.success){
         toast.success(response.data.message);
