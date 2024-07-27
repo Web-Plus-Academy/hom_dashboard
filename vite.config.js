@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://wpa-admin-dashboard.onrender.com',
+        target: 'https://wpa-admin-dashboard.netlify.app/',
         changeOrigin: true,
         secure: false,
       },
