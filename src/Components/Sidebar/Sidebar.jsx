@@ -13,13 +13,7 @@ const Sidebar = ({ adminDetails }) => {
 
             <div className="sidebar-container">
 
-                <button className="sidebar-container-button">
-                    <NavLink className="sidebar-container-link" to="/pod">
-                        POD
-                    </NavLink>
-                </button>
 
-                <hr />
                 <button className="sidebar-container-button">
                     <NavLink className="sidebar-container-link" to="/dashboard">
                         Dashboard
@@ -28,16 +22,29 @@ const Sidebar = ({ adminDetails }) => {
 
                 <br />
                 <hr />
-
                 <button className="sidebar-container-button">
-                    <NavLink className="sidebar-container-link" to="/tasks">
-                        Tasks
+                    <NavLink className="sidebar-container-link" to="/pod">
+                        POD
+                    </NavLink>
+                </button>
+                <hr />
+                <button className="sidebar-container-button">
+                    <NavLink className="sidebar-container-link" to="/addMentor">
+                        Add Mentor
                     </NavLink>
                 </button>
 
                 <br />
                 <hr />
 
+                <button className="sidebar-container-button">
+                    <NavLink className="sidebar-container-link" to="/addRemoveMentees">
+                        Mentees
+                    </NavLink>
+                </button>
+
+                <br />
+                <hr />
 
             </div>
         </div>

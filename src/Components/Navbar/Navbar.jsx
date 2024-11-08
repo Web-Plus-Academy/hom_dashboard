@@ -4,7 +4,7 @@ import './Navbar.css';
 const Navbar = ({ onLogout }) => {
   return (
     <nav className="navbar">
-      <h1>ADMIN Dashboard</h1>
+      <h1>Admin's Dashboard</h1>
       <button onClick={onLogout} className="logout-button">Logout</button>
     </nav>
   );

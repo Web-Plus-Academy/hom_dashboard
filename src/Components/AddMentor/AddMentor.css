@@ -1,0 +1,106 @@
+/* Add Mentor styles */
+.addMentor-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.addMentor-container {
+  margin: auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+}
+
+.add-mentor-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add_mentor_heading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.2rem;
+}
+
+.label {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.4rem;
+}
+
+.input-field {
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.2);
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.8rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.submit-button:active {
+  background-color: #004494;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .addMentor-container {
+    padding: 1.5rem;
+    width: 90%;
+  }
+
+  .addMentor-heading {
+    font-size: 2rem;
+  }
+
+  .add_mentor_heading {
+    font-size: 1.5rem;
+  }
+
+  /* Adjust content margin for smaller screens */
+  .content {
+    margin-left: 0;
+    margin-top: 60px;
+  }
+
+  /* Adjust navbar for smaller screens */
+  .navbar {
+    width: 100%;
+    left: 0;
+  }
+}

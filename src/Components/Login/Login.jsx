@@ -37,7 +37,7 @@ const Login = ({ setIsAuthenticated }) => {
         localStorage.setItem('adminDetails', JSON.stringify(adminDetails));
         setIsAuthenticated(true);
         toast.success(response.data.message);
-        navigate('/pod');
+        navigate('/dashboard');
 
       } else {
         toast.error(response.data.message);
@@ -54,7 +54,7 @@ const Login = ({ setIsAuthenticated }) => {
       <img src={loginImg} alt="" />
       <div className="right_login">
         <h4>Hi, Welcome Back to</h4>
-        <h1>Web <b>Plus</b> Academy</h1>
+        <h1>SAREDUFY Web <b>Plus</b> Academy</h1>
         <form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-title">Login</h2>
           <div className="form-group">
