@@ -1,18 +1,27 @@
-.sidebar{
+  /* Fixed sidebar */
+  .sidebar {
     display: flex;
     flex-direction: column;
     background-color: #f4f4f4;
-}
+    position: fixed;
+    top: 60px; /* Adjust this based on the navbar height */
+    left: 0;
+    width: 270px; /* Sidebar width */
+    height: calc(100vh - 60px); /* Full height of the viewport minus navbar height */
+    padding: 1rem;
+    overflow-y: auto; /* Ensure content inside sidebar scrolls if it exceeds the height */
+  }
 
 .sidebar-box{
     background-color: #f4f4f4;
     border: 2px solid blue;
-    padding: 2rem;
+    padding: 2.2rem;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 600px;
     margin: 10px auto;
+    line-height: 30px;
 }
 
 .sidebar-welcome {
@@ -32,8 +41,7 @@
   }
 
 .sidebar-container {
-    width: 200px;
-    
+    width: 250px;
     height: 100vh;
     padding: 1rem;
 }

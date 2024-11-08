@@ -1,101 +1,159 @@
 import React, { useState } from 'react';
 import axios from '../../axiosConfig.js';
-import './Dashboard.css';
 import Swal from 'sweetalert2';
-import 'sweetalert2/src/sweetalert2.scss';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import icons from react-icons/fa
+import './Dashboard.css';
 
 const Dashboard = () => {
-  const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [batchnumber, setBatchNumber] = useState('');
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+  const [oldPassword, setOldPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [showOldPassword, setShowOldPassword] = useState(false);
+  const [showNewPassword, setShowNewPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleSubmit = async (e) => {
+  const togglePopup = () => setIsPopupVisible(!isPopupVisible);
+
+  const handlePasswordToggle = (toggleType) => {
+    if (toggleType === 'old') setShowOldPassword(!showOldPassword);
+    else if (toggleType === 'new') setShowNewPassword(!showNewPassword);
+    else if (toggleType === 'confirm') setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const handleChangePassword = async (e) => {
     e.preventDefault();
-    const userData = {
-      name,
-      username: username.toUpperCase(),
-      password,
-      batchnumber
-    };
 
-    const result = await Swal.fire({
-      title: 'Please confirm the details',
-      html: `<pre>${JSON.stringify(userData, null, 2)}</pre>`,
-      icon: 'info',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Confirm'
-    });
+    const adminDetails = JSON.parse(localStorage.getItem('adminDetails'));
+    const adminname = adminDetails?.ID;
 
-    if (result.isConfirmed) {
+    if (!adminname) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: 'Admin ID not found. Please log in again.',
+      });
+      return;
+    }
 
-      try {
-        const response = await axios.post('/api/admin/newUser', userData);
+    if (newPassword !== confirmPassword) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'New & Confirm password does not match. Please try again.',
+      });
+      return;
+    }
 
-        if (response.data.success) {
-          Swal.fire('Success!', response.data.message, 'success');
-          setName('');
-          setUsername('');
-          setPassword('');
-          setBatchNumber('');
-        } else {
-          Swal.fire('Error!', response.data.message, 'error');
-        }
-      } catch (error) {
-        Swal.fire('Error!', error.message, 'error');
-        console.error('Error:', error.message);
+    try {
+      const response = await axios.post('/api/admin/updatePassword', {
+        adminname,
+        oldPassword,
+        newPassword,
+      });
+
+      if (response.data.success) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Password Updated',
+          text: 'Your password has been successfully updated!',
+        }).then(() => {
+          togglePopup();
+          // Clear input fields
+          setOldPassword('');
+          setNewPassword('');
+          setConfirmPassword('');
+        });
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: response.data.message || 'Failed to update password.',
+        });
       }
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Server Error',
+        text: 'Error updating password. Please try again later.',
+      });
     }
   };
 
   return (
-    <>
-      <h1>Dashboard</h1>
-      <form onSubmit={handleSubmit} className="add-user-form">
-        <h3 className='add_user_heading'>Add New User</h3>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+    <div>
+      <h1 className='dashboard_heading'>Welcome to Saredufy Webplus Academy Pvt. Ltd.</h1>
+      <br />
+      <hr />
+      <br />
+      <button onClick={togglePopup} className="change-password-button">Change Password</button>
+
+      {isPopupVisible && (
+        <div className="popup-overlay">
+          <div className="popup-content">
+            <h2>Change Password</h2>
+            <form onSubmit={handleChangePassword}>
+              <label>
+                Old Password:
+                <div className="password-container">
+                  <input
+                    type={showOldPassword ? 'text' : 'password'}
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => handlePasswordToggle('old')}
+                  >
+                    {showOldPassword ? <FaEyeSlash /> : <FaEye />} {/* Use react-icons here */}
+                  </button>
+                </div>
+              </label>
+              <label>
+                New Password:
+                <div className="password-container">
+                  <input
+                    type={showNewPassword ? 'text' : 'password'}
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => handlePasswordToggle('new')}
+                  >
+                    {showNewPassword ? <FaEyeSlash /> : <FaEye />} {/* Use react-icons here */}
+                  </button>
+                </div>
+              </label>
+              <label>
+                Confirm Password:
+                <div className="password-container">
+                  <input
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                    required
+                  />
+                  <button
+                    type="button"
+                    className="eye-icon"
+                    onClick={() => handlePasswordToggle('confirm')}
+                  >
+                    {showConfirmPassword ? <FaEyeSlash /> : <FaEye />} {/* Use react-icons here */}
+                  </button>
+                </div>
+              </label>
+              <button type="submit" className="submit-button">Submit</button>
+              <button type="button" onClick={togglePopup} className="cancel-button">Cancel</button>
+            </form>
+          </div>
         </div>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Batch Number:</label>
-          <input
-            type="number"
-            value={batchnumber}
-            onChange={(e) => setBatchNumber(e.target.value)}
-            min="1"
-            max="100"
-            required
-          />
-        </div>
-        <button type="submit">Add User</button>
-      </form>
-    </>
+      )}
+    </div>
   );
 };
 

@@ -8,8 +8,10 @@ import Sidebar from './Components/Sidebar/Sidebar';
 import Dashboard from './Components/Dashboard/Dashboard';
 import POD from './Components/POD/POD';
 import Login from './Components/Login/Login';
-import TaskSubmit from './Components/TaskSubmit/TaskSubmit';
+// import TaskSubmit from './Components/TaskSubmit/TaskSubmit';
 import axios from './axiosConfig';
+import AddMentor from './Components/AddMentor/AddMentor';
+import AddRemoveMentees from './Components/AddRemoveMentees/AddRemoveMentees ';
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -60,10 +62,12 @@ const App = () => {
             <Sidebar adminDetails={adminDetails} />
             <div className="main-content">
               <Routes>
-                <Route path="/" element={<Navigate to="/pod" />} />
-                <Route path="/pod" element={<POD />} />
+                <Route path="/" element={<Navigate to="/dashboard" />} />
                 <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/tasks" element={<TaskSubmit />} />
+                <Route path="/pod" element={<POD />} />
+                <Route path="/addMentor" element={<AddMentor/>}/>
+                <Route path="/addRemoveMentees" element={<AddRemoveMentees/>}/>
+                {/* <Route path="/tasks" element={<TaskSubmit />} /> */}
               </Routes>
             </div>
           </div>

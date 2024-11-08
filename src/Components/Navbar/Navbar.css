@@ -1,12 +1,15 @@
-/* Navbar.css */
-
-.navbar {
+  /* Fixed navbar */
+  .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     background-color: #333;
     color: #fff;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10; 
   }
   
   .navbar h1 {
