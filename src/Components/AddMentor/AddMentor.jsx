@@ -18,7 +18,7 @@ const AddMentor = () => {
       name,
       phoneNumber,
       emailId,
-      password  // Include password in the data sent to the backend
+      password
     };
 
     const result = await Swal.fire({
