@@ -36,7 +36,7 @@ const AddRemoveMentee = () => {
     }
 
     try {
-      const response = await axios.post(`/api/admin/${mentorId}/addMentee`, { menteeId });
+      const response = await axios.post(`/api/admin/${mentorId}/addMentee`, {menteeId});
 
       if (response.data.success) {
         Swal.fire('Success!', 'Mentee added successfully!', 'success');
